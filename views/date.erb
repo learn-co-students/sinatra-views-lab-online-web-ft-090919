@@ -1,0 +1,16 @@
+<% require 'date' %>
+<% date = DateTime.now %>
+<% month = date.strftime("%B") %>
+<% day = date.day %>
+<% day_of_week = date.strftime("%A") %>
+<% year = date.year %>
+
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>Today</h1>
+        <p><%= "The date is #{day_of_week}, #{month} #{day}, #{year}." %></p>
+    </body>
+</html>
