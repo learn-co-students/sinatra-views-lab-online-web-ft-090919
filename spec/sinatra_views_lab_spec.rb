@@ -1,52 +1,28 @@
-describe App do
+describe 'App' do 
 
-  describe 'GET /hello' do
-    before do
-      get '/hello'
-    end
+  describe 'GET /' do
 
-    it 'sends a 200 status code' do
+    it 'returns a 200 status code' do 
+      get '/'
       expect(last_response.status).to eq(200)
     end
-
-    it 'renders a template called "hello.erb" ' do
-      expect(last_response.body).to eq(File.read("views/hello.erb"))
+    it 'loads the index.erb file' do 
+      get '/'
+      expect(last_response.body).to include("Hello World")
+      expect(last_response.body).to include("This HTML code is inside of a '.erb' file")
     end
   end
 
-  describe 'GET /goodbye' do
-    before do
-      get '/goodbye'
-    end
-
-    it 'sends a 200 status code' do
+  describe 'GET /info' do 
+    it 'returns a 200 status code' do 
+      get '/info'
       expect(last_response.status).to eq(200)
     end
 
-    it 'renders a template called "goodbye.erb" ' do
-      expect(last_response.body).to include("Goodbye Joe")
-    end
-  end
-  describe 'GET /date' do
-    before do
-      get '/date'
-    end
-
-    it 'sends a 200 status code' do
-      expect(last_response.status).to eq(200)
-    end
-
-    it 'renders a template called "date.erb" ' do
-      expect(last_response.body).to include("The date is")
-    end
-
-    it 'includes the current date and time' do
-      if last_response.status == 200
-        expect(last_response.body).to include(Date.today.strftime("%A, %B %d, %Y"))
-      elsif last_response.status = 404
-        fail "Your application is not responding to GET /date. Did you create that route?"
-      end
+    it 'loads info.erb in the view' do 
+      get '/info'
+      expect(last_response.body).to include("Info Page")
+      expect(last_response.body).to include("This is the info page:")
     end
   end
 end
-
